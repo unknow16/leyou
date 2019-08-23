@@ -19,6 +19,8 @@ zuul:
     item-service: /item/** # 将商品微服务映射到/item/**
   ignored-services:
       - upload-service # 忽略upload-service服务
+  add-host-header: true # 携带请求本身的head信息
+  sensitive-headers: # 配置禁止使用的头信息，这里设置null,表示都不敏感
 ribbon:
   ConnectTimeout: 250 # 连接超时时间(ms)
   ReadTimeout: 2000 # 通信超时时间(ms)

@@ -1,0 +1,22 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: search-service
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: 172.17.100.6:9300
+  spring:
+    jackson:
+      default-property-inclusion: non_null # 配置json处理时忽略空值， 数据是查到了，但是因为我们只查询部分字段，所以结果json 数据中有很多null，这很不优雅
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+  instance:
+    lease-renewal-interval-in-seconds: 5 # 每隔5秒发送一次心跳
+    lease-expiration-duration-in-seconds: 10 # 10秒不发送就过期
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    instance-id: ${spring.application.name}:${server.port}
